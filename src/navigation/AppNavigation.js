@@ -1,9 +1,13 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Platform } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { MainScreen } from '../screens/MainScreen';
 import { PostScreen } from '../screens/PostScreen';
+import { BookedScreen } from '../screens/BookedScreen';
 import { THEME } from '../theme';
+import { Ionicons } from '@expo/vector-icons';
 
 const PostNavigator = createStackNavigator(
   {
@@ -25,4 +29,34 @@ const PostNavigator = createStackNavigator(
   }
 );
 
-export const AppNavigator = createAppContainer(PostNavigator);
+const BookedNavigator = createStackNavigator(
+  {
+    Booked: BookedScreen,
+    Post: PostScreen,
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
+      },
+      headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
+    },
+  }
+);
+
+const BottomNavigator = createBottomTabNavigator({
+  Post: {
+    screen: PostNavigator,
+    navigationOptions: {
+      tabBarIcon: <Ionicons name="ios-albums" size={24} />,
+    },
+  },
+  Booked: {
+    screen: BookedScreen,
+    navigationOptions: {
+      tabBarIcon: <Ionicons name="ios-star" size={24} />,
+    },
+  },
+});
+
+export const AppNavigator = createAppContainer(BottomNavigator);
