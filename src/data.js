@@ -34,4 +34,18 @@ export const DATA = [
     date: new Date().toJSON(),
     booked: false,
   },
+  {
+    id: '6',
+    img: 'https://picsum.photos/id/182/640/480',
+    text: 'Awesome text for post 6',
+    date: new Date().toJSON(),
+    booked: false,
+  },
+  {
+    id: '7',
+    img: 'https://picsum.photos/id/191/640/480',
+    text: 'Awesome text for post 7',
+    date: new Date().toJSON(),
+    booked: true,
+  },
 ];

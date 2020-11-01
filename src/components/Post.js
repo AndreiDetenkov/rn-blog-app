@@ -1,15 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, Text } from 'react-native';
+import { StyleSheet, View, ImageBackground, Text, TouchableOpacity } from 'react-native';
 
-export const Post = ({ post }) => {
+export const Post = ({ post, onOpen }) => {
   return (
-    <View style={styles.post}>
-      <ImageBackground source={{ uri: post.img }} style={styles.image}>
-        <View style={styles.textWrap}>
-          <Text style={styles.title}>{new Date(post.date).toLocaleDateString('ru-RU')}</Text>
-        </View>
-      </ImageBackground>
-    </View>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() => {
+        onOpen(post);
+      }}
+    >
+      <View style={styles.post}>
+        <ImageBackground source={{ uri: post.img }} style={styles.image}>
+          <View style={styles.textWrap}>
+            <Text style={styles.title}>{new Date(post.date).toLocaleDateString('ru-RU')}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -17,6 +24,7 @@ const styles = StyleSheet.create({
   post: {
     marginBottom: 15,
     overflow: 'hidden',
+    borderRadius: 8,
   },
   image: {
     width: '100%',
