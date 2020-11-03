@@ -38,6 +38,20 @@ const BookedNavigator = createStackNavigator(
   navigatorOptions
 )
 
+const AboutNavigator = createStackNavigator(
+  {
+    About: AboutScreen
+  },
+  navigatorOptions
+)
+
+const CreateNavigator = createStackNavigator(
+  {
+    Create: CreateScreen
+  },
+  navigatorOptions
+)
+
 const routeConfig = {
   Post: {
     screen: PostNavigator,
@@ -71,14 +85,14 @@ const BottomNavigator =
       })
 
 const MainNavigator = createDrawerNavigator({
-  PostTabs: {
+  Posts: {
     screen: BottomNavigator
   },
   About: {
-    screen: AboutScreen
+    screen: AboutNavigator
   },
   Create: {
-    screen: CreateScreen
+    screen: CreateNavigator
   }
 })
 
