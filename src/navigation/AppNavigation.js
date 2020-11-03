@@ -48,15 +48,19 @@ const BottomNavigator = createBottomTabNavigator({
   Post: {
     screen: PostNavigator,
     navigationOptions: {
-      tabBarIcon: <Ionicons name="ios-albums" size={24} />,
+      tabBarIcon: info => <Ionicons name="ios-albums" size={24} color={info.tintColor} />,
     },
   },
   Booked: {
-    screen: BookedScreen,
+    screen: BookedNavigator,
     navigationOptions: {
-      tabBarIcon: <Ionicons name="ios-star" size={24} />,
+      tabBarIcon: info => <Ionicons name="ios-star" size={24} color={info.tintColor} />,
     },
   },
+}, {
+  tabBarOptions: {
+    activeTintColor: THEME.MAIN_COLOR
+  }
 });
 
 export const AppNavigator = createAppContainer(BottomNavigator);
