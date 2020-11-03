@@ -84,16 +84,35 @@ const BottomNavigator =
         }
       })
 
-const MainNavigator = createDrawerNavigator({
-  Posts: {
-    screen: BottomNavigator
+const MainNavigator = createDrawerNavigator(
+  {
+    Posts: {
+      screen: BottomNavigator,
+      navigationOptions: {
+        drawerLabel: 'Main'
+      }
+    },
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerLabel: 'About'
+      }
+    },
+    Create: {
+      screen: CreateNavigator,
+      navigationOptions: {
+        drawerLabel: 'Create Post'
+      }
+    }
   },
-  About: {
-    screen: AboutNavigator
-  },
-  Create: {
-    screen: CreateNavigator
+  {
+    contentOptions: {
+      activeTintColor: THEME.MAIN_COLOR,
+      labelStyle: {
+        fontFamily: 'open-bold'
+      }
+    }
   }
-})
+)
 
 export const AppNavigator = createAppContainer(MainNavigator)
