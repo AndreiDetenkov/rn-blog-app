@@ -10,24 +10,21 @@ import { BookedScreen } from '../screens/BookedScreen'
 import { THEME } from '../theme'
 import { Ionicons } from '@expo/vector-icons'
 
+const navigatorOptions = {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff'
+    },
+    headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR
+  }
+}
+
 const PostNavigator = createStackNavigator(
   {
-    Main: {
-      screen: MainScreen
-    },
-    Post: {
-      screen: PostScreen
-    }
+    Main: MainScreen,
+    Post: PostScreen
   },
-  {
-    initialRouteName: 'Main',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff'
-      },
-      headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR
-    }
-  }
+  navigatorOptions
 )
 
 const BookedNavigator = createStackNavigator(
@@ -35,14 +32,7 @@ const BookedNavigator = createStackNavigator(
     Booked: BookedScreen,
     Post: PostScreen
   },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff'
-      },
-      headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR
-    }
-  }
+  navigatorOptions
 )
 
 const routeConfig = {
@@ -68,7 +58,8 @@ const BottomNavigator =
         activeTintColor: '#fff',
         barStyle: {
           backgroundColor: THEME.MAIN_COLOR
-        }
+        },
+        shifting: true
       })
     : createBottomTabNavigator(routeConfig, {
         tabBarOptions: {
