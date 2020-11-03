@@ -12,11 +12,11 @@ export const BookedScreen = ({ navigation }) => {
   return <PostList data={DATA.filter(post => post.booked)} onOpen={openPostHandler} />
 }
 
-BookedScreen.navigationOptions = {
+BookedScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Booked',
   headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item title="Toggle menu" iconName="ios-menu" onPress={() => {}} />
+      <Item title="Toggle menu" iconName="ios-menu" onPress={() => navigation.toggleDrawer()} />
     </HeaderButtons>
   )
-}
+})
